@@ -43,4 +43,4 @@ Built with plain JavaScript as a Chrome Manifest V3 extension. No frameworks, no
 
 ## Author
 
-Made by [Naman Sharma](https://github.com/Naman317)
+Made by me with the need to stop sending files to myself
