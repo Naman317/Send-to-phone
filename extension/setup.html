@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup — Send to Phone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="setup.css" />
+</head>
+<body>
+  <div class="page">
+    <!-- Background glow -->
+    <div class="bg-glow"></div>
+
+    <div class="card">
+      <!-- Logo -->
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Send to Phone</h1>
+          <p class="brand-sub">Connect your Telegram bot</p>
+        </div>
+      </div>
+
+      <!-- Steps indicator -->
+      <div class="steps">
+        <div class="step active" id="dot1">1</div>
+        <div class="step-line" id="line1"></div>
+        <div class="step" id="dot2">2</div>
+        <div class="step-line" id="line2"></div>
+        <div class="step" id="dot3">✓</div>
+      </div>
+
+      <!-- ── Step 1: Bot Token ── -->
+      <div class="panel" id="step1">
+        <div class="panel-header">
+          <span class="panel-badge">Step 1</span>
+          <h2>Create Your Telegram Bot</h2>
+          <p>You need a Telegram bot to send files. It only takes 1 minute.</p>
+        </div>
+
+        <div class="instructions">
+          <div class="instruction-step">
+            <span class="num">1</span>
+            <span>Open Telegram and search for <a href="https://t.me/BotFather" target="_blank" class="link">@BotFather</a></span>
+          </div>
+          <div class="instruction-step">
+            <span class="num">2</span>
+            <span>Send the command <code>/newbot</code></span>
+          </div>
+          <div class="instruction-step">
+            <span class="num">3</span>
+            <span>Follow the prompts — give your bot a name and username</span>
+          </div>
+          <div class="instruction-step">
+            <span class="num">4</span>
+            <span>Copy the <strong>token</strong> BotFather gives you (looks like <code>123456:ABC-DEF…</code>)</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="tokenInput">Bot Token</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              id="tokenInput"
+              placeholder="123456789:AAHxNPs-cp2Qms08mSq6..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="eye-btn" id="tokenVisBtn" title="Show/hide">
+              <svg id="eyeOpen" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg id="eyeClosed" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+          <p class="field-error" id="tokenError"></p>
+        </div>
+
+        <button class="btn-primary" id="step1Next">Continue →</button>
+      </div>
+
+      <!-- ── Step 2: Chat ID ── -->
+      <div class="panel" id="step2" style="display:none">
+        <div class="panel-header">
+          <span class="panel-badge">Step 2</span>
+          <h2>Find Your Chat ID</h2>
+          <p>This tells the bot where to send your files.</p>
+        </div>
+
+        <div class="instructions">
+          <div class="instruction-step">
+            <span class="num">1</span>
+            <span>Open Telegram and search for <a href="https://t.me/userinfobot" target="_blank" class="link">@userinfobot</a></span>
+          </div>
+          <div class="instruction-step">
+            <span class="num">2</span>
+            <span>Press <strong>Start</strong> — it will reply with your info</span>
+          </div>
+          <div class="instruction-step">
+            <span class="num">3</span>
+            <span>Copy the <strong>Id</strong> number from the reply</span>
+          </div>
+          <div class="instruction-step">
+            <span class="num">4</span>
+            <span>Also send a message to your bot first so it can reach you</span>
+          </div>
+        </div>
+
+        <div class="limit-notice">
+          <span class="limit-icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </span>
+          <span>Files over <strong>50 MB</strong> cannot be sent — this is a Telegram Bot API limit.</span>
+        </div>
+
+        <div class="field">
+          <label for="chatIdInput">Your Chat ID</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              id="chatIdInput"
+              placeholder="1040834388"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <p class="field-error" id="chatIdError"></p>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-secondary" id="step2Back">← Back</button>
+          <button class="btn-primary" id="step2Next">Test & Save</button>
+        </div>
+
+        <p class="testing-msg" id="testingMsg" style="display:none">
+          <span class="spinner"></span> Testing connection…
+        </p>
+      </div>
+
+      <!-- ── Step 3: Done ── -->
+      <div class="panel" id="step3" style="display:none">
+        <div class="done-state">
+          <div class="done-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="9 12 11 14 15 10"/>
+            </svg>
+          </div>
+          <h2>You're All Set!</h2>
+          <p>A test message was sent to your Telegram.<br/>The extension is now active.</p>
+          <div class="limit-notice" style="text-align:left; margin-bottom: 20px;">
+            <span class="limit-icon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+            </span>
+            <span>Files over <strong>50 MB</strong> will not be sent. You'll get a notification explaining why.</span>
+          </div>
+          <button class="btn-primary" id="doneBtn">Close Setup</button>
+        </div>
+      </div>
+
+      <!-- Edit mode save -->
+      <div class="panel" id="editPanel" style="display:none">
+        <!-- reuses step1 + step2 panels, just different footer -->
+      </div>
+      <!-- Credit — hardcoded, do not remove -->
+      <div class="credit">
+        Made by <a href="https://github.com/Naman317" target="_blank" class="credit-link">
+          Naman Sharma
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px; margin-left:3px;">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <script src="setup.js"></script>
+</body>
+</html>

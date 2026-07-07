@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send to Phone</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <span class="logo-text">Send to Phone</span>
+      </div>
+      <button class="settings-btn" id="settingsBtn" title="Settings">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Not configured state -->
+    <div class="state" id="setupState" style="display:none">
+      <div class="setup-prompt">
+        <div class="setup-icon">→</div>
+        <h2>Quick Setup</h2>
+        <p>Connect your Telegram bot to get started</p>
+        <button class="btn-primary" id="goSetupBtn">Set Up Now</button>
+      </div>
+    </div>
+
+    <!-- Configured state -->
+    <div class="state" id="mainState" style="display:none">
+      <!-- Toggle section -->
+      <div class="toggle-section">
+        <div class="status-ring" id="statusRing">
+          <div class="phone-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2"/>
+              <line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="toggle-info">
+          <span class="status-label" id="statusLabel">Active</span>
+          <span class="status-sub" id="statusSub">Watching your downloads</span>
+        </div>
+
+        <label class="toggle" id="toggleWrapper">
+          <input type="checkbox" id="mainToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Stats -->
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-value" id="sentCount">0</span>
+          <span class="stat-label">Files Sent</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <div class="connected-badge">
+            <span class="dot"></span>
+            <span>Telegram</span>
+          </div>
+          <span class="stat-label">Connected</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Info -->
+      <p class="hint">
+        When a download finishes, you'll get a notification asking if you want to send it to your phone.
+      </p>
+      <div class="credit"><b>Made by Naman Sharma</b> </a></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
