@@ -4,8 +4,6 @@ A Chrome extension that sends your downloads straight to your phone via Telegram
 
 When a file finishes downloading, a notification pops up asking if you want to send it. Hit send and it shows up in Telegram.
 
-![Extension popup](https://github.com/Naman317/send-to-phone/raw/main/preview.png)
-
 ## How to install
 
 Since this isn't on the Chrome Web Store yet, you'll need to load it manually:
@@ -23,11 +21,13 @@ Takes about 2 minutes.
 You'll need a Telegram bot and your Chat ID. The extension walks you through both steps with instructions — no technical knowledge needed.
 
 **To get a bot token:**
+
 - Open Telegram, search `@BotFather`
 - Send `/newbot` and follow the steps
 - Copy the token it gives you
 
 **To get your Chat ID:**
+
 - Search `@userinfobot` on Telegram
 - Press Start — it replies with your ID
 - Also make sure to send your bot at least one message first
