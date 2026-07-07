@@ -1,8 +1,8 @@
 # Send to Phone
 
-A Chrome extension that sends your downloads straight to your phone via Telegram — one click, no extra apps.
+> Too lazy to open WhatsApp Web just to send a file to myself. Built a Chrome extension instead.
 
-When a file finishes downloading, a notification pops up asking if you want to send it. Hit send and it shows up in Telegram.
+Catches PC downloads and pushes them straight to your phone via Telegram. When a file finishes downloading, a notification pops up asking if you want to send it. Hit send and it shows up in your Telegram app.
 
 ## How to install
 
