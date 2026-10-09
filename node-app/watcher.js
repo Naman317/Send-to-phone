@@ -5,13 +5,17 @@ function waitUntilComplete(filePath) {
     let lastSize = -1;
 
     const interval = setInterval(() => {
-      const { size } = fs.statSync(filePath);
-      if (size === lastSize) {
-        clearInterval(interval);
-        resolve();
+      try {
+        const { size } = fs.statSync(filePath);
+        if (size === lastSize) {
+          clearInterval(interval);
+          resolve();
+        }
+        lastSize = size;
+      } catch (e) {
+        // Ignore if file disappears
       }
-      lastSize = size;
-    }, 1000);
+    }, 200);
   });
 }
 

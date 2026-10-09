@@ -94,11 +94,18 @@ chrome.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
 
     chrome.action.setBadgeText({ text: "" });
   } catch (err) {
+    let explanation = err.message;
+    if (err.message === "Failed to fetch") {
+      explanation = "Chrome security blocked access to this file type or link.";
+    } else if (err.message.includes("413")) {
+      explanation = "File exceeds Telegram's 50MB size limit.";
+    }
+
     chrome.notifications.create({
       type: "basic",
       iconUrl: "icons/icon128.png",
       title: "Send Failed",
-      message: err.message,
+      message: explanation,
     });
     chrome.action.setBadgeText({ text: "!" });
     chrome.action.setBadgeBackgroundColor({ color: "#ef4444" });
