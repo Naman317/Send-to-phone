@@ -11,7 +11,6 @@ const downloadsPath = path.join(os.homedir(), "Downloads");
 let failedQueue = [];
 let isRetrying = false;
 
-// Setup Keyboard Listener
 readline.emitKeypressEvents(process.stdin);
 if (process.stdin.isTTY) {
   process.stdin.setRawMode(true);
@@ -37,48 +36,42 @@ function formatBytes(bytes) {
 async function processFile(filePath) {
   const fileName = path.basename(filePath);
   
-  // Ignore hidden files and temporary Word files
   if (fileName.startsWith("~$") || fileName.startsWith(".")) return;
 
   try {
     await waitUntilComplete(filePath);
     
-    // Check size after it's complete
-    if (!fs.existsSync(filePath)) return; // File might have been deleted quickly
+    if (!fs.existsSync(filePath)) return;
     const stats = fs.statSync(filePath);
     const fileSizeStr = formatBytes(stats.size);
     
-    // Estimate time (assume conservative 1 MB/s upload speed)
     const sizeInMB = stats.size / (1024 * 1024);
     const estimatedSeconds = Math.max(1, Math.ceil(sizeInMB / 1.0));
 
     console.log(`\n[Detect]  ${fileName} (${fileSizeStr})`);
-    console.log(`[Sending] Uploading... (Est. time: ~${estimatedSeconds} sec)`);
+    console.log(`[Sending] Uploading... (~${estimatedSeconds}s)`);
     
     await sendFile(filePath);
-    console.log(`[Success] Sent ${fileName} to phone!`);
+    console.log(`[Success] Sent ${fileName} to phone`);
     
-    // Remove from failed queue if it was there
     failedQueue = failedQueue.filter(f => f !== filePath);
-    
   } catch (err) {
     let explanation = err.message;
     if (err.message.includes("413")) {
-      explanation = "File is too large! (Exceeds Telegram's 50MB bot limit)";
+      explanation = "File exceeds Telegram 50MB limit";
     } else if (err.message.includes("ENOTFOUND") || err.message.includes("ECONNRESET")) {
-      explanation = "No internet connection or connection dropped.";
+      explanation = "No internet connection";
     }
 
-    console.log(`[FAILED]  Could not send ${fileName}.`);
+    console.log(`[FAILED]  Could not send ${fileName}`);
     console.log(`          Why: ${explanation}`);
-    console.log(`          --> Press 'r' to retry later.`);
+    console.log(`          Press 'r' to retry`);
     if (!failedQueue.includes(filePath)) {
       failedQueue.push(filePath);
     }
   }
 }
 
-// Handle Keypresses
 process.stdin.on("keypress", async (str, key) => {
   if (key.ctrl && key.name === "c") {
     process.exit();
@@ -103,7 +96,6 @@ process.stdin.on("keypress", async (str, key) => {
     console.log(`\n[Retry] Retrying ${failedQueue.length} failed file(s)...`);
     isRetrying = true;
     
-    // Create a copy of the queue to process
     const toRetry = [...failedQueue];
     for (const filePath of toRetry) {
       if (fs.existsSync(filePath)) {

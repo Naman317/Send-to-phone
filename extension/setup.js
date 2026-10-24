@@ -78,7 +78,7 @@ document.getElementById("step2Next").addEventListener("click", async () => {
     const data = await res.json();
 
     if (!res.ok || !data.ok) {
-      throw new Error(data.description || "Telegram API error — check your token and Chat ID.");
+      throw new Error(data.description || "Telegram API error: check token and Chat ID.");
     }
 
     await chrome.storage.sync.set({ botToken: token, chatId, enabled: true });

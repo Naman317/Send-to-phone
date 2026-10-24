@@ -17,7 +17,6 @@ body {
   padding: 16px;
 }
 
-/* ── Header ── */
 .header {
   display: flex;
   align-items: center;
@@ -69,7 +68,6 @@ body {
   color: #aaa;
 }
 
-/* ── Setup State ── */
 .setup-prompt {
   text-align: center;
   padding: 16px 8px 8px;
@@ -114,7 +112,6 @@ body {
   background: #fff;
 }
 
-/* ── Main State ── */
 .toggle-section {
   display: flex;
   align-items: center;
@@ -187,7 +184,6 @@ body {
   color: #666;
 }
 
-/* ── Toggle Switch ── */
 .toggle {
   position: relative;
   width: 44px;
@@ -233,14 +229,12 @@ body {
   background: #0a0a0a;
 }
 
-/* ── Divider ── */
 .divider {
   height: 1px;
   background: #1a1a1a;
   margin: 0 -4px;
 }
 
-/* ── Stats ── */
 .stats {
   display: flex;
   align-items: center;
@@ -299,7 +293,6 @@ body {
   50% { opacity: 0.3; }
 }
 
-/* ── Hint ── */
 .hint {
   font-size: 11px;
   color: #555;
@@ -308,7 +301,6 @@ body {
   text-align: center;
 }
 
-/* ── Credit ── */
 .credit {
   font-size: 10px;
   color: #ffffff;

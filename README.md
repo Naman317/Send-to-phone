@@ -1,55 +1,52 @@
-# Send-to-Phone Automation
+# Send-to-Phone
 
 > Too lazy to open WhatsApp Web just to send a file to myself. Built a tool to do it instead.
 
-A Node.js tool that watches the local Downloads folder and automatically sends new files directly to a phone via Telegram. 
+Watches the local Downloads folder and sends new files directly to a phone via Telegram.
 
-This repository contains two approaches:
-1. **Desktop Dashboard (Node.js)** - The primary tool. Watches the filesystem directly.
-2. **Chrome Extension** - A browser-based alternative.
+Contains two implementations:
+1. **Desktop App (Node.js)** - Watches the filesystem directly.
+2. **Chrome Extension** - Browser download listener.
 
 ---
 
-## Desktop Dashboard (Recommended)
+## Desktop App
 
-A Node.js CLI application that monitors the filesystem to bypass browser security restrictions. 
+Node.js CLI that monitors the Downloads folder and sends completed files.
 
 ### Features
-- **Real-Time Folder Monitoring:** Uses `chokidar` to monitor the `Downloads` folder.
-- **File Verification:** Polls file sizes to ensure the download is 100% complete before transfer.
-- **CLI Dashboard:** Displays real-time logs, file sizes, and estimated upload times.
-- **File Filtering:** Ignores hidden system files, `.crdownload` temporary files, and `~$` Word lock files.
-- **Manual Retry System:** Caches failed uploads in RAM. Press `r` to bulk-retry failed files after network drops.
+- Watches `Downloads` folder with `chokidar`
+- Verifies download completion by polling file size before sending
+- Terminal status with estimated upload time
+- Filters out temporary files (`.crdownload`, `~$*`, hidden files)
+- In-memory retry queue (`r` to retry failed transfers)
 
 ### Usage
-1. Run `Start Send-to-Phone.bat` to launch the CLI.
-2. Download any file to the `Downloads` folder.
-3. Keyboard Controls:
-   - `c` : Clear terminal output.
-   - `r` : Retry failed uploads.
-4. Close the terminal window to stop the script.
+1. Run `Start Send-to-Phone.bat` or `node node-app/index.js`
+2. Download any file to `Downloads`
+3. Controls:
+   - `c` : Clear terminal output
+   - `r` : Retry failed uploads
+   - `ctrl+c` : Exit
 
 ---
 
 ## Chrome Extension
 
-A Chrome extension that uses the `chrome.downloads` API to intercept browser downloads.
+Alternative implementation using Chrome's download API.
 
 ### Limitations
-This extension is deprecated in favor of the Desktop Dashboard due to browser limitations:
-- **CORS Restrictions:** Chrome prevents extensions from reading local files. The extension attempts to re-fetch the file from the origin URL, which fails on secure portals, auth-gated links, or `blob:` URLs ("Failed to Fetch" error).
-- **Scope:** Cannot detect files saved from desktop applications (Slack, Word, etc.).
+- Cannot access local files due to browser security policies (fails on protected or blob URLs).
+- Only detects downloads within Chrome, not desktop apps.
 
 ---
 
-## Setup & Configuration
+## Setup
 
-Both tools use the Telegram Bot API for file transfer.
-
-1. Install [Node.js](https://nodejs.org/).
-2. Create a `.env` file in the `node-app` directory:
+1. Install Node.js.
+2. Create `node-app/.env`:
    ```env
    BOT_TOKEN=your_bot_token_here
    CHAT_ID=your_chat_id_here
    ```
-3. **Limit:** Telegram's Bot API enforces a hard 50 MB maximum file size limit.
+3. Telegram Bot API has a 50 MB file size limit.

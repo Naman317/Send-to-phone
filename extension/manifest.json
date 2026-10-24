@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Send to Phone",
   "version": "1.0.0",
-  "description": "Instantly send any download to your phone via Telegram. One click — done.",
+  "description": "Send downloaded files to your phone via Telegram.",
   "permissions": ["downloads", "storage", "notifications"],
   "host_permissions": [
     "https://api.telegram.org/*",

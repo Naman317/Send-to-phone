@@ -12,9 +12,7 @@ function waitUntilComplete(filePath) {
           resolve();
         }
         lastSize = size;
-      } catch (e) {
-        // Ignore if file disappears
-      }
+      } catch (e) {}
     }, 200);
   });
 }

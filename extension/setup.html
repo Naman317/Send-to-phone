@@ -3,18 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Setup — Send to Phone</title>
+  <title>Setup - Send to Phone</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="setup.css" />
 </head>
 <body>
   <div class="page">
-    <!-- Background glow -->
     <div class="bg-glow"></div>
 
     <div class="card">
-      <!-- Logo -->
       <div class="brand">
         <div class="brand-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -28,21 +26,19 @@
         </div>
       </div>
 
-      <!-- Steps indicator -->
       <div class="steps">
         <div class="step active" id="dot1">1</div>
         <div class="step-line" id="line1"></div>
         <div class="step" id="dot2">2</div>
         <div class="step-line" id="line2"></div>
-        <div class="step" id="dot3">✓</div>
+        <div class="step" id="dot3">3</div>
       </div>
 
-      <!-- ── Step 1: Bot Token ── -->
       <div class="panel" id="step1">
         <div class="panel-header">
           <span class="panel-badge">Step 1</span>
           <h2>Create Your Telegram Bot</h2>
-          <p>You need a Telegram bot to send files. It only takes 1 minute.</p>
+          <p>Create a Telegram bot to send files.</p>
         </div>
 
         <div class="instructions">
@@ -56,11 +52,11 @@
           </div>
           <div class="instruction-step">
             <span class="num">3</span>
-            <span>Follow the prompts — give your bot a name and username</span>
+            <span>Follow the prompts and choose a bot name and username</span>
           </div>
           <div class="instruction-step">
             <span class="num">4</span>
-            <span>Copy the <strong>token</strong> BotFather gives you (looks like <code>123456:ABC-DEF…</code>)</span>
+            <span>Copy the token provided by BotFather</span>
           </div>
         </div>
 
@@ -87,15 +83,14 @@
           <p class="field-error" id="tokenError"></p>
         </div>
 
-        <button class="btn-primary" id="step1Next">Continue →</button>
+        <button class="btn-primary" id="step1Next">Continue</button>
       </div>
 
-      <!-- ── Step 2: Chat ID ── -->
       <div class="panel" id="step2" style="display:none">
         <div class="panel-header">
           <span class="panel-badge">Step 2</span>
           <h2>Find Your Chat ID</h2>
-          <p>This tells the bot where to send your files.</p>
+          <p>Specifies the destination chat for downloads.</p>
         </div>
 
         <div class="instructions">
@@ -105,15 +100,15 @@
           </div>
           <div class="instruction-step">
             <span class="num">2</span>
-            <span>Press <strong>Start</strong> — it will reply with your info</span>
+            <span>Press <strong>Start</strong> to get your ID</span>
           </div>
           <div class="instruction-step">
             <span class="num">3</span>
-            <span>Copy the <strong>Id</strong> number from the reply</span>
+            <span>Copy the <strong>Id</strong> number</span>
           </div>
           <div class="instruction-step">
             <span class="num">4</span>
-            <span>Also send a message to your bot first so it can reach you</span>
+            <span>Send a message to your bot once so it can contact you</span>
           </div>
         </div>
 
@@ -123,7 +118,7 @@
               <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
           </span>
-          <span>Files over <strong>50 MB</strong> cannot be sent — this is a Telegram Bot API limit.</span>
+          <span>Files over <strong>50 MB</strong> cannot be sent due to Telegram Bot API limits.</span>
         </div>
 
         <div class="field">
@@ -141,16 +136,15 @@
         </div>
 
         <div class="btn-row">
-          <button class="btn-secondary" id="step2Back">← Back</button>
+          <button class="btn-secondary" id="step2Back">Back</button>
           <button class="btn-primary" id="step2Next">Test & Save</button>
         </div>
 
         <p class="testing-msg" id="testingMsg" style="display:none">
-          <span class="spinner"></span> Testing connection…
+          <span class="spinner"></span> Testing connection...
         </p>
       </div>
 
-      <!-- ── Step 3: Done ── -->
       <div class="panel" id="step3" style="display:none">
         <div class="done-state">
           <div class="done-icon">
@@ -159,25 +153,21 @@
               <polyline points="9 12 11 14 15 10"/>
             </svg>
           </div>
-          <h2>You're All Set!</h2>
-          <p>A test message was sent to your Telegram.<br/>The extension is now active.</p>
+          <h2>Connected</h2>
+          <p>A test message was sent to Telegram.<br/>The extension is active.</p>
           <div class="limit-notice" style="text-align:left; margin-bottom: 20px;">
             <span class="limit-icon">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
               </svg>
             </span>
-            <span>Files over <strong>50 MB</strong> will not be sent. You'll get a notification explaining why.</span>
+            <span>Files over <strong>50 MB</strong> will not be sent.</span>
           </div>
           <button class="btn-primary" id="doneBtn">Close Setup</button>
         </div>
       </div>
 
-      <!-- Edit mode save -->
-      <div class="panel" id="editPanel" style="display:none">
-        <!-- reuses step1 + step2 panels, just different footer -->
-      </div>
-      <!-- Credit — hardcoded, do not remove -->
+      <div class="panel" id="editPanel" style="display:none"></div>
       <div class="credit">
         Made by <a href="https://github.com/Naman317" target="_blank" class="credit-link">
           Naman Sharma

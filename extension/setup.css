@@ -28,7 +28,6 @@ body {
   display: none;
 }
 
-/* ── Card ── */
 .card {
   background: #0e0e0e;
   border: 1px solid #1e1e1e;
@@ -40,7 +39,6 @@ body {
   position: relative;
 }
 
-/* ── Brand ── */
 .brand {
   display: flex;
   align-items: center;
@@ -73,7 +71,6 @@ body {
   margin-top: 2px;
 }
 
-/* ── Steps ── */
 .steps {
   display: flex;
   align-items: center;
@@ -119,7 +116,6 @@ body {
   background: #333;
 }
 
-/* ── Panel ── */
 .panel-header {
   margin-bottom: 20px;
 }
@@ -152,7 +148,6 @@ body {
   line-height: 1.5;
 }
 
-/* ── Instructions ── */
 .instructions {
   background: #0a0a0a;
   border: 1px solid #1a1a1a;
@@ -217,7 +212,6 @@ strong {
   font-weight: 500;
 }
 
-/* ── Field ── */
 .field {
   margin-bottom: 20px;
 }
@@ -284,7 +278,6 @@ strong {
   min-height: 16px;
 }
 
-/* ── Buttons ── */
 .btn-primary {
   width: 100%;
   background: #e8e8e8;
@@ -336,7 +329,6 @@ strong {
   flex: 1;
 }
 
-/* ── Testing message ── */
 .testing-msg {
   display: flex;
   align-items: center;
@@ -361,7 +353,6 @@ strong {
   to { transform: rotate(360deg); }
 }
 
-/* ── Limit notice ── */
 .limit-notice {
   display: flex;
   align-items: flex-start;
@@ -387,7 +378,6 @@ strong {
   font-weight: 600;
 }
 
-/* ── Done state ── */
 .done-state {
   text-align: center;
   padding: 12px 0;
@@ -418,7 +408,6 @@ strong {
   margin-bottom: 24px;
 }
 
-/* ── Credit ── */
 .credit {
   font-size: 12px;
   color: #444;
